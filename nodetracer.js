@@ -406,6 +406,14 @@ function render(res, tracer) {
             // TODO JSON.stringify really needed?
             comet_script = "<script type='text/javascript'>document.getElementById('screen').innerHTML = '<pre>'+" + JSON.stringify(image) + "+ '</pre>';</script>";
             res.write(comet_script);
+            for (var i=1; i<scene['shapes'].length; i++) {
+                var radius = scene['shapes'][i]['radius'];
+                scene['shapes'][i]['radius'] += (Math.random() - 0.5) / (20 / radius);
+                for (var j=0; j<scene['shapes'][i]['centre'].length; j++) {
+                    if (j != 1)
+                      scene['shapes'][i]['centre'][j] += (Math.random() - 0.5) / 2;
+                }
+            }
         }
             
         tracer_mag = tracer.vel[0]*tracer.vel[0]+tracer.vel[1]*tracer.vel[1]+tracer.vel[2]*tracer.vel[2]; 
