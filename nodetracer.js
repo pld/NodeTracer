@@ -430,7 +430,7 @@ function render(res, tracer) {
     }, 20); // adjust as needed
 }
 
-http.createServer(function (req, res) {
+!!http && http.createServer(function (req, res) {
     var ip = req.connection.remoteAddress;
     var query = url.parse(req.url, true).query;
     console.log(query);
@@ -456,6 +456,4 @@ http.createServer(function (req, res) {
         res.end("Unexpected query params.");
     }
 
-}).listen(1337, "127.0.0.1");
-
-console.log('Server running at http://127.0.0.1:1337/?launch=true');
+}).listen(1337, "127.0.0.1") && console.log('Server running at http://127.0.0.1:1337/?launch=true');
