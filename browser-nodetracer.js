@@ -61,6 +61,7 @@ window.onload = function(){
     }
   }
   function renderTracerString(tstr) {
+    tstr = tstr.replace(/(\S)/g, "<span class='letter' onclick='var event = arguments[0];event.stopPropagation(); off = $(this).offset();$(this).attr(\"ox\", off.left);$(this).attr(\"oy\", off.top);'>$1</span>");
     wrap.innerHTML = "<pre>"+tstr+"</pre>";
     /* splitting the text into DOM elements was sooooo slooooow... :( */
     // var output = "",
